@@ -1,9 +1,33 @@
 <?php
-/**
-(1) 勝敗（勝ち・負け・あいこ）は$resultに代入してください
-(2) プレイヤーの手は$playerHandに代入してください
-(3) コンピューターの手は$pcHandに代入してください
-**/
+// じゃんけんの手を配列に代入
+$hands = ['グー', 'チョキ', 'パー'];
+
+// プレイヤーの手がPOSTされたら
+if (isset($_POST['playerHand'])) {
+    // プレイヤーの手を代入
+    $playerHand = $_POST['playerHand'];
+
+    // PCの手をランダムで選択
+    $key = array_rand($hands);
+    $pcHand = $hands[$key];
+
+    // 勝敗を判定
+    switch ($playerHand) {
+        case ($playerHand === $pcHand):
+            $result = 'あいこ';
+            break;
+        case 'グー':
+            $result = ($pcHand === 'チョキ') ? '勝ち' : '負け';
+            break;
+        case 'チョキ':
+            $result = ($pcHand === 'パー') ? '勝ち' : '負け';
+            break;
+        case 'パー':
+            $result = ($pcHand === 'グー') ? '勝ち' : '負け';
+            break;
+    }
+}
+
 
 // ここから処理を記述
 
@@ -14,12 +38,12 @@
 <head>
     <meta charset="utf8">
     <title>じゃんけん</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
 <div id="wrapper">
     <header>
-        <div class="header-logo">ゆるグラミング講座</div>
+        <div class="header-logo"></div>
     </header>
     <main>
         <h1>結果は・・・</h1>
@@ -32,9 +56,7 @@
             <p><a class="red" href="index.php">>>もう一回勝負する</a></p>
         </div>
     </main>
-    <footer>
-        <small>&copy;yurugramming!!</small>
-    </footer>
+    
 </div>
 </body>
 </html>
