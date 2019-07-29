@@ -1,17 +1,17 @@
 <?php
-// じゃんけんの手を配列に代入
+
 $hands = ['グー', 'チョキ', 'パー'];
 
-// プレイヤーの手がPOSTされたら
+
 if (isset($_POST['playerHand'])) {
-    // プレイヤーの手を代入
+    
     $playerHand = $_POST['playerHand'];
 
-    // PCの手をランダムで選択
+    
     $key = array_rand($hands);
     $pcHand = $hands[$key];
 
-    // 勝敗を判定
+    
     switch ($playerHand) {
         case ($playerHand === $pcHand):
             $result = 'あいこ';
@@ -29,7 +29,6 @@ if (isset($_POST['playerHand'])) {
 }
 
 
-// ここから処理を記述
 
 ?>
 
